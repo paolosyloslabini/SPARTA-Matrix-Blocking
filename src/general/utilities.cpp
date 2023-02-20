@@ -42,6 +42,17 @@ vector<intT> get_partition(const vector<intT> &grouping)
     return partition;
 }
 
+vector<intT> get_fixed_size_grouping(const vector<intT> &grouping, intT row_block_size)
+{
+    vector<intT> result_grouping(grouping.size(), -1);
+    vector<intT> perm = get_permutation(grouping);
+    for (intT i = 0; i < perm.size(); i++)
+    {
+        result_grouping[perm[i]] = i/row_block_size;
+    }
+    return result_grouping;
+}
+
 
 bool check_structured_sparsity(vector<intT>& structured_sparsity_pattern, vector<intT>& structured_sparsity_column_counter, intT* row, intT row_len, int m)
 {

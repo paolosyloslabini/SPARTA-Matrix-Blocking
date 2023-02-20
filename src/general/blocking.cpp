@@ -301,6 +301,12 @@ vector<intT> BlockingEngine::GetGrouping(const CSR& cmat)
         grouping_result = FixedBlocking(cmat, row_block_size);
         break;
     }
+
+    if (force_fixed_size && blocking_algo != fixed_size)
+    {
+        grouping_result = get_fixed_size_grouping(grouping_result, row_block_size);
+    }
+
     return grouping_result;
 }
 
@@ -312,8 +318,8 @@ BlockingEngine::BlockingEngine(CLineReader &cline)
   blocking_algo = cline.blocking_algo_;
   row_block_size = cline.row_block_size_;
   col_block_size = cline.col_block_size_;
+  force_fixed_size = cline.force_fixed_size;
   SetComparator(cline.sim_measure_);
-
 }
 
 void BlockingEngine::print()

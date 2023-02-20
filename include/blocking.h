@@ -22,6 +22,7 @@ class BlockingEngine
         intT row_block_size = 1; //only used for fixed size blocking        
         bool use_groups = false;
         bool use_pattern = true;
+        bool force_fixed_size = false;
         
         int structured_m = 2;
         int structured_n = 4;
